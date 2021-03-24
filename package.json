@@ -1,0 +1,23 @@
+{
+  "name": "instantohie-hapi-fhir-ig-importer",
+  "version": "0.0.1",
+  "description": "Instant OpenHIE HAPI FHIR Implementation Guide importer",
+  "main": "index.js",
+  "author": "Jembi Health Systems NPC",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "adm-zip": "0.5.4",
+    "axios": "0.21.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^4.3.1",
+    "prettier": "^2.2.1"
+  }
+}
