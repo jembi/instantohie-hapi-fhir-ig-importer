@@ -9,7 +9,8 @@ const IG_DEFINITIONS_URL = process.env.IG_DEFINITIONS_URL
 const resourceTypes = ['CodeSystem', 'ConceptMap', 'ValueSet']
 
 function buildResourceUrl(...paths) {
-  let result = `${HAPI_FHIR_BASE_URL}/${HAPI_FHIR_BASE_PATH}`
+  const cleanPath = () => HAPI_FHIR_BASE_PATH.replace(/^\/+|\/+$/g, '')
+  let result = `${HAPI_FHIR_BASE_URL}/${cleanPath()}`
   paths.forEach(path => (result += `/${path}`))
   return result
 }
