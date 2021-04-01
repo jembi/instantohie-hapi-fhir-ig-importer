@@ -8,16 +8,15 @@ const HAPI_FHIR_BASE_PATH = process.env.HAPI_FHIR_BASE_PATH || '/fhir'
 const IG_DEFINITIONS_URL = process.env.IG_DEFINITIONS_URL
 const resourceTypes = ['CodeSystem', 'ConceptMap', 'ValueSet']
 
-function buildResourceUrl(...paths) {
-  const cleanPath = () => HAPI_FHIR_BASE_PATH.replace(/^\/+|\/+$/g, '')
-  let result = `${HAPI_FHIR_BASE_URL}/${cleanPath()}`
-  paths.forEach(path => (result += `/${path}`))
-  return result
+function buildResourceUrl(subPath) {
+  const cleanPath = (path) => path.replace(/^\/+|\/+$/g, '')
+  return `${HAPI_FHIR_BASE_URL}/${cleanPath(HAPI_FHIR_BASE_PATH)}/${cleanPath(subPath)}`
 }
 
-async function postToFHIRServer({ resourceName, data }) {
+async function postToFHIRServer(data) {
+  const resourceName = data.resourceType
   try {
-    await axios.put(buildResourceUrl([resourceName, data.id]), data)
+    await axios.put(buildResourceUrl(`${resourceName}/${data.id}`), data)
     return `Successfully created ${resourceName} resource`
   } catch (err) {
     return new Error(`${resourceName} resource creation failed: ${err}`)
@@ -65,12 +64,8 @@ async function sendResources(resources) {
   if (!resources.length) return
 
   const resource = resources.pop()
-  const resourceName = getResourceType({
-    file: resource.entryName,
-    resourceTypes
-  })
   const data = resource.getData().toString('utf-8')
-  await postToFHIRServer({ resourceName, data: JSON.parse(data) })
+  await postToFHIRServer(JSON.parse(data))
 
   await sendResources(resources)
 }
