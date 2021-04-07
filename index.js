@@ -80,7 +80,7 @@ async function sendResources(resources) {
         resourceCollections.ConceptMap
       )
     )
-    console.log('Posting of resources to Hapi FHIR successfully done')
+    console.log('Posting resources to HAPI FHIR successful')
   } catch (err) {
     console.log(err)
   }
