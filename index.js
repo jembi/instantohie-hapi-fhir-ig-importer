@@ -55,11 +55,6 @@ function buildResourceCollectionsObject({ files, resourceTypes }) {
   return result
 }
 
-function getResourceType({ file, resourceTypes }) {
-  const match = findMatch({ file, resourceTypes })
-  return match || file.split(/-/)[0]
-}
-
 async function sendResources(resources) {
   if (!resources.length) return
 
