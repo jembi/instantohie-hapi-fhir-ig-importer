@@ -1,6 +1,6 @@
 {
   "name": "instantohie-hapi-fhir-ig-importer",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Instant OpenHIE HAPI FHIR Implementation Guide importer",
   "main": "index.js",
   "author": "Jembi Health Systems NPC",
